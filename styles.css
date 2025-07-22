@@ -116,6 +116,8 @@ body {
     display: none;
     flex-direction: column;
     cursor: pointer;
+    padding: 5px;
+    z-index: 1001;
 }
 
 .bar {
@@ -124,6 +126,20 @@ body {
     background: #333;
     margin: 3px 0;
     transition: 0.3s;
+    border-radius: 2px;
+}
+
+/* Hamburger animation */
+.hamburger.active .bar:nth-child(1) {
+    transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.hamburger.active .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active .bar:nth-child(3) {
+    transform: rotate(45deg) translate(-5px, -6px);
 }
 
 /* Hero Section */
@@ -1014,25 +1030,75 @@ section {
         transition: 0.3s;
         box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
         padding: 2rem 0;
+        z-index: 999;
     }
     
     .nav-menu.active {
         left: 0;
     }
     
+    .nav-menu li {
+        margin: 0.5rem 0;
+    }
+    
     .hero-container {
         grid-template-columns: 1fr;
         text-align: center;
         gap: 2rem;
+        padding: 2rem 20px;
     }
     
     .hero-title {
         font-size: 2.5rem;
+        line-height: 1.2;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.2rem;
+    }
+    
+    .hero-description {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
     }
     
     .hero-buttons {
         justify-content: center;
         flex-wrap: wrap;
+        gap: 0.75rem;
+    }
+    
+    .btn {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+        min-width: 140px;
+    }
+    
+    .hero-stats {
+        gap: 1.5rem;
+        margin: 1.5rem 0;
+    }
+    
+    .stat-number {
+        font-size: 1.5rem;
+    }
+    
+    .profile-placeholder {
+        width: 250px;
+        height: 250px;
+    }
+    
+    .profile-placeholder i {
+        font-size: 6rem;
+    }
+    
+    .floating-icon {
+        width: 45px;
+        height: 45px;
+    }
+    
+    .floating-icon i {
+        font-size: 1.2rem;
     }
     
     .about-content {
@@ -1042,6 +1108,7 @@ section {
     
     .about-stats {
         grid-template-columns: 1fr;
+        gap: 1.5rem;
     }
     
     .timeline::before {
@@ -1051,6 +1118,7 @@ section {
     .timeline-content {
         width: calc(100% - 4rem);
         margin-left: 4rem !important;
+        padding: 1.5rem;
     }
     
     .timeline-content::before {
@@ -1059,20 +1127,38 @@ section {
     
     .projects-grid {
         grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .project-card {
+        padding: 1.5rem;
     }
     
     .skills-grid {
         grid-template-columns: 1fr;
+        gap: 1.5rem;
     }
     
-    .contact-content {
+    .skill-category {
+        padding: 1.5rem;
+    }
+    
+    .contact-info {
         grid-template-columns: 1fr;
-        gap: 2rem;
+        gap: 1.5rem;
+    }
+    
+    .contact-item {
+        padding: 1.25rem 1.5rem;
     }
     
     .footer-content {
         flex-direction: column;
         gap: 1rem;
+    }
+    
+    .section-title {
+        font-size: 2rem;
     }
 }
 
@@ -1081,17 +1167,280 @@ section {
         padding: 0 15px;
     }
     
+    .nav-container {
+        padding: 0 15px;
+    }
+    
+    .hero {
+        min-height: 90vh;
+    }
+    
+    .hero-container {
+        padding: 1rem 15px;
+        gap: 1.5rem;
+    }
+    
+    .hero-title {
+        font-size: 1.8rem;
+        line-height: 1.1;
+        margin-bottom: 0.75rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1rem;
+        margin-bottom: 1rem;
+    }
+    
+    .hero-description {
+        font-size: 0.9rem;
+        margin-bottom: 1.25rem;
+        line-height: 1.6;
+    }
+    
+    .hero-badge {
+        font-size: 0.8rem;
+        padding: 0.4rem 0.8rem;
+        margin-bottom: 0.75rem;
+    }
+    
+    .hero-stats {
+        gap: 1rem;
+        margin: 1.25rem 0;
+    }
+    
+    .stat-number {
+        font-size: 1.2rem;
+    }
+    
+    .stat-label {
+        font-size: 0.8rem;
+    }
+    
+    .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.75rem;
+    }
+    
+    .btn {
+        padding: 12px 24px;
+        font-size: 0.85rem;
+        width: 100%;
+        max-width: 280px;
+        justify-content: center;
+    }
+    
+    .profile-placeholder {
+        width: 200px;
+        height: 200px;
+    }
+    
+    .profile-placeholder i {
+        font-size: 4rem;
+    }
+    
+    .floating-icon {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .floating-icon i {
+        font-size: 1rem;
+    }
+    
+    .section-title {
+        font-size: 1.75rem;
+        margin-bottom: 2rem;
+    }
+    
+    .about-text p {
+        font-size: 1rem;
+        margin-bottom: 1.25rem;
+    }
+    
+    .stat {
+        padding: 1.5rem 1rem;
+    }
+    
+    .stat h3 {
+        font-size: 2rem;
+    }
+    
+    .detail-item {
+        padding: 1.25rem;
+        flex-direction: column;
+        text-align: center;
+        gap: 0.75rem;
+    }
+    
+    .detail-item i {
+        font-size: 2rem;
+        margin-top: 0;
+    }
+    
+    .timeline-content {
+        padding: 1.25rem;
+        font-size: 0.9rem;
+    }
+    
+    .timeline-header h3 {
+        font-size: 1.1rem;
+    }
+    
+    .project-card {
+        padding: 1.25rem;
+    }
+    
+    .project-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 0.75rem;
+    }
+    
+    .project-header i {
+        font-size: 1.5rem;
+    }
+    
+    .project-header h3 {
+        font-size: 1.1rem;
+    }
+    
+    .project-card p {
+        font-size: 0.9rem;
+    }
+    
+    .project-features {
+        justify-content: center;
+    }
+    
+    .skill-category {
+        padding: 1.25rem;
+    }
+    
+    .skill-category h3 {
+        font-size: 1rem;
+        margin-bottom: 1.25rem;
+        text-align: center;
+    }
+    
+    .skill-items {
+        justify-content: center;
+    }
+    
+    .skill-item {
+        font-size: 0.8rem;
+        padding: 0.4rem 0.8rem;
+    }
+    
+    .contact-item {
+        padding: 1rem 1.25rem;
+        flex-direction: column;
+        text-align: center;
+        gap: 0.75rem;
+    }
+    
+    .contact-item i {
+        font-size: 1.25rem;
+    }
+    
+    .modal-content {
+        margin: 10% auto;
+        width: 95%;
+        max-height: 85vh;
+    }
+    
+    .modal-header,
+    .modal-body {
+        padding: 1.5rem;
+    }
+    
+    .modal-actions {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+    
+    .scroll-indicator {
+        bottom: 1rem;
+    }
+    
+    .scroll-indicator span {
+        font-size: 0.7rem;
+    }
+}
+
+/* Extra Small Screens (Galaxy Fold, Small phones) */
+@media (max-width: 360px) {
+    .hero-title {
+        font-size: 1.5rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 0.9rem;
+    }
+    
+    .hero-description {
+        font-size: 0.85rem;
+    }
+    
+    .hero-stats {
+        flex-direction: column;
+        gap: 0.75rem;
+        text-align: center;
+    }
+    
+    .btn {
+        padding: 10px 20px;
+        font-size: 0.8rem;
+    }
+    
+    .section-title {
+        font-size: 1.5rem;
+    }
+    
+    .project-header {
+        gap: 0.5rem;
+    }
+    
+    .skill-item {
+        font-size: 0.75rem;
+        padding: 0.35rem 0.7rem;
+    }
+    
+    .modal-content {
+        width: 98%;
+        margin: 5% auto;
+    }
+    
+    .modal-header,
+    .modal-body {
+        padding: 1rem;
+    }
+}
+
+/* Landscape mode for mobile devices */
+@media (max-width: 768px) and (orientation: landscape) {
+    .hero {
+        min-height: 100vh;
+        padding: 2rem 0;
+    }
+    
+    .hero-container {
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+        text-align: left;
+    }
+    
     .hero-title {
         font-size: 2rem;
     }
     
-    .section-title {
-        font-size: 2rem;
+    .hero-buttons {
+        flex-direction: row;
+        justify-content: flex-start;
     }
     
-    .project-card,
-    .skill-category,
-    .contact-form {
-        padding: 1.5rem;
+    .profile-placeholder {
+        width: 200px;
+        height: 200px;
     }
-} 
+}

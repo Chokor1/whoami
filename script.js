@@ -17,13 +17,24 @@ const navMenu = document.querySelector('.nav-menu');
 hamburger.addEventListener('click', () => {
     hamburger.classList.toggle('active');
     navMenu.classList.toggle('active');
+    document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : 'auto';
 });
 
 // Close mobile menu when clicking on a link
 document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
     hamburger.classList.remove('active');
     navMenu.classList.remove('active');
+    document.body.style.overflow = 'auto';
 }));
+
+// Close mobile menu when clicking outside
+document.addEventListener('click', (e) => {
+    if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+        hamburger.classList.remove('active');
+        navMenu.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
+});
 
 // Smooth scrolling for navigation links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -238,7 +249,9 @@ function createParticles() {
     
     function init() {
         particles = [];
-        const numberOfParticles = Math.floor((canvas.width * canvas.height) / 15000);
+        // Reduce particles on mobile devices for better performance
+        const isMobile = window.innerWidth <= 768;
+        const numberOfParticles = Math.floor((canvas.width * canvas.height) / (isMobile ? 25000 : 15000));
         for (let i = 0; i < numberOfParticles; i++) {
             particles.push(new Particle());
         }
