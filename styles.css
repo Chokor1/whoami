@@ -1158,9 +1158,13 @@ img {
     }
 
     .portrait {
-        max-width: 230px;
+        max-width: 170px;
         justify-self: start;
         margin-top: 1.25rem;
+    }
+
+    .portrait figcaption span:last-child {
+        display: none;
     }
 
     .profile-grid {
